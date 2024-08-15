@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用开源RustDesk部署远程控制服务 | 小雨的小窝</title><meta name="author" content="xiaoyu"><meta name="copyright" content="xiaoyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、部署环境操作系统：Ubuntu 2204 LTSIP地址：192.168.108.115开源软件项目地址：rustdesk&#x2F;rustdesk-server: RustDesk Server Program (github.com)参考文档：RustDesk文档 :: RustDesk文档 二、安装 下载安装包 12wget https:&#x2F;&#x2F;github.com&#x2F;rustdesk&#x2F;ru">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用开源RustDesk部署远程控制服务 | 小雨的小窝</title><meta name="author" content="xiaoyu"><meta name="copyright" content="xiaoyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="一、部署环境操作系统：Ubuntu 2204 LTSIP地址：192.168.108.115开源软件项目地址：rustdesk&#x2F;rustdesk-server: RustDesk Server Program (github.com)参考文档：RustDesk文档 :: RustDesk文档 二、安装 下载安装包 12wget https:&#x2F;&#x2F;github.com&#x2F;rustdesk&#x2F;ru">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用开源RustDesk部署远程控制服务">
 <meta property="og:url" content="https://xinxiaoyu1.github.io/2024/08/01/%E4%BD%BF%E7%94%A8%E5%BC%80%E6%BA%90RustDesk%E9%83%A8%E7%BD%B2%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E6%9C%8D%E5%8A%A1/index.html">
@@ -23,16 +23,16 @@
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":250},
   copy: {
     success: '复制成功',
     error: '复制错误',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
-    homepage: false,
-    post: false
+    homepage: true,
+    post: true
   },
   runtime: '天',
   dateSuffix: {
@@ -137,7 +137,7 @@
       win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
         }
       }
       const t = saveToLocal.get('theme')
