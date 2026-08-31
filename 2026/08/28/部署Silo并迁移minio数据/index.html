@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="部署环境：（新）服务器IP地址：172.26.70.184（旧）数据服务器IP地址：172.26.70.169minio版本：minio version RELEASE.2022-05-26T05-48-41Zsilo版本：minio version RELEASE.2026-08-04T00-00-00Z 一、Podman容器部署Silo123456789101112131415podman p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="部署环境：（新）服务器IP地址：172.26.70.184（旧）数据服务器IP地址：172.26.70.169minio版本：minio version RELEASE.2022-05-26T05-48-41Zsilo版本：minio version RELEASE.2026-08-04T00-00-00Z 一、Podman容器部署Silo123456789101112131415podman p">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-08-28T01:12:43.000Z">
+<meta property="article:modified_time" content="2026-08-28T08:47:31.607Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="minio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://example.com/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2026-08-28T01:12:43.000Z",
+  "dateModified": "2026-08-28T08:47:31.607Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">Hexo</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-28T01:12:43.000Z" title="Created 2026-08-28 09:12:43">2026-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-28T08:47:31.607Z" title="Updated 2026-08-28 16:47:31">2026-08-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="部署环境："><a href="#部署环境：" class="headerlink" title="部署环境："></a>部署环境：</h1><p>（新）服务器IP地址：172.26.70.184<br>（旧）数据服务器IP地址：172.26.70.169<br>minio版本：minio version RELEASE.2022-05-26T05-48-41Z<br>silo版本：minio version RELEASE.2026-08-04T00-00-00Z</p>
+<h1 id="一、Podman容器部署Silo"><a href="#一、Podman容器部署Silo" class="headerlink" title="一、Podman容器部署Silo"></a>一、Podman容器部署Silo</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">podman pull pgsty/minio</span><br><span class="line">podman save -o minio.tar minio:latest</span><br><span class="line">镜像上传其部署服务器</span><br><span class="line">podman load -i /minio.tar</span><br><span class="line"></span><br><span class="line">podman run -d \</span><br><span class="line">   -p 9000:9000 \</span><br><span class="line">   -p 9001:9001 \</span><br><span class="line">   --name silo \</span><br><span class="line">   -v /data:/data \</span><br><span class="line">   -e <span class="string">&quot;MINIO_UPDATE=off&quot;</span> \</span><br><span class="line">   -e <span class="string">&quot;MINIO_ROOT_USER=minioadmin&quot;</span> \</span><br><span class="line">   -e <span class="string">&quot;MINIO_ROOT_PASSWORD=minioadmin&quot;</span> \</span><br><span class="line">   -e <span class="string">&quot;MINIO_BROWSER_REDIRECT_URL=http://172.26.70.184/minio/ui&quot;</span> \</span><br><span class="line">   pgsty/minio:latest server /data --console-address <span class="string">&quot;:9001&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="二、配置nginx转发"><a href="#二、配置nginx转发" class="headerlink" title="二、配置nginx转发"></a>二、配置nginx转发</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name _; # 替换为你的实际域名或IP</span><br><span class="line"></span><br><span class="line">    # 允许上传任意大小的文件，避免大文件上传被拦截</span><br><span class="line">    client_max_body_size 0; </span><br><span class="line">    </span><br><span class="line">    # 必须关闭缓冲，防止 Nginx 将大文件先存到本地再转发导致超时</span><br><span class="line">    proxy_buffering off;</span><br><span class="line">    proxy_request_buffering off;</span><br><span class="line"></span><br><span class="line">    # 1. 代理 MinIO API 接口（默认路径）</span><br><span class="line">    location /minio/ &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;</span><br><span class="line">        </span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        </span><br><span class="line">        # 保持长连接，适配 S3 协议</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        </span><br><span class="line">        # 超时配置</span><br><span class="line">        proxy_connect_timeout 300s;</span><br><span class="line">        proxy_send_timeout 300s;</span><br><span class="line">        proxy_read_timeout 300s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 2. 代理 MinIO Web 控制台</span><br><span class="line">    location ^~ /minio/ui &#123;</span><br><span class="line">        rewrite ^/minio/ui(/?)(.*) /$2 break; </span><br><span class="line">        </span><br><span class="line">        proxy_pass http://127.0.0.1:9001;</span><br><span class="line">        </span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_set_header X-NginX-Proxy true;</span><br><span class="line">        </span><br><span class="line">        # 核心：动态替换 base 标签</span><br><span class="line">        sub_filter &#x27;&lt;base href=&quot;/&quot;/&gt;&#x27; &#x27;&lt;base href=&quot;/minio/ui/&quot;/&gt;&#x27;;</span><br><span class="line">        sub_filter_once on; # 只替换第一个匹配项</span><br><span class="line">        sub_filter_types text/html; # 仅对 HTML 文件进行替换</span><br><span class="line">        </span><br><span class="line">        # 控制台需要支持 WebSocket 升级</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">        </span><br><span class="line">        proxy_connect_timeout 300s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、使用mc本地模式进行数据迁移"><a href="#三、使用mc本地模式进行数据迁移" class="headerlink" title="三、使用mc本地模式进行数据迁移"></a>三、使用mc本地模式进行数据迁移</h1><h2 id="配置ssh免密登录"><a href="#配置ssh免密登录" class="headerlink" title="配置ssh免密登录"></a>配置ssh免密登录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id root@172.16.7.171</span><br></pre></td></tr></table></figure>
+<h2 id="将minio远端文件同步到本地"><a href="#将minio远端文件同步到本地" class="headerlink" title="将minio远端文件同步到本地"></a>将minio远端文件同步到本地</h2><h3 id="远端minio-rwvp目录结构"><a href="#远端minio-rwvp目录结构" class="headerlink" title="远端minio rwvp目录结构"></a>远端minio rwvp目录结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x 158 root root 12288 Apr 16 20:56 hls</span><br><span class="line">drwxr-xr-x   3 root root  4096 Jun  4 17:09 records</span><br><span class="line">drwxr-xr-x   6 root root  4096 Aug 27 11:15 snapshot</span><br><span class="line">drwxr-xr-x   3 root root  4096 Aug 26  2025 standard</span><br><span class="line">drwxr-xr-x   3 root root  4096 Nov  8  2025 tower</span><br><span class="line">drwxr-xr-x   3 root root  4096 Nov  9  2025 vision</span><br></pre></td></tr></table></figure>
+<h3 id="使用rsync将远端数据中的部分目录同步到本地"><a href="#使用rsync将远端数据中的部分目录同步到本地" class="headerlink" title="使用rsync将远端数据中的部分目录同步到本地"></a>使用rsync将远端数据中的部分目录同步到本地</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avP root@172.16.7.171:/richfiles/minio/data/rwvp/&#123;hls,standard,tower,vision&#125; /richdata/tmp/rwvp/</span><br></pre></td></tr></table></figure>
+<h3 id="使用scp将远端数据中的部分目录同步到本地"><a href="#使用scp将远端数据中的部分目录同步到本地" class="headerlink" title="使用scp将远端数据中的部分目录同步到本地"></a>使用scp将远端数据中的部分目录同步到本地</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r root@172.16.7.171:/richfiles/minio/data/rwvp/&#123;hls,standard,tower,vision&#125; /richdata/tmp/rwvp/</span><br></pre></td></tr></table></figure>
+<h2 id="使用mc进行上传"><a href="#使用mc进行上传" class="headerlink" title="使用mc进行上传"></a>使用mc进行上传</h2><h3 id="服务器安装mcli"><a href="#服务器安装mcli" class="headerlink" title="服务器安装mcli"></a>服务器安装mcli</h3><p>mcli下载地址：<a target="_blank" rel="noopener" href="https://github.com/pgsty/mc/releases/download/RELEASE.2026-08-04T00-00-00Z/mcli-20260804000000.0.0-1.x86_64.rpm">mcli-20260804000000.0.0-1.x86_64.rpm</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/pgsty/mc/releases/download/RELEASE.2026-08-04T00-00-00Z/mcli-20260804000000.0.0-1.x86_64.rpm</span><br><span class="line">rpm -ivh mcli-20260804000000.0.0-1.x86_64.rpm</span><br><span class="line">/usr/local/bin/mcli --version</span><br></pre></td></tr></table></figure>
+<h3 id="使用mc添加minio库"><a href="#使用mc添加minio库" class="headerlink" title="使用mc添加minio库"></a>使用mc添加minio库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/mcli alias set silo http://127.0.0.1:9000 &quot;minioadmin&quot; &quot;minioadmin&quot;    # 添加新服务器别名</span><br><span class="line">/usr/local/bin/mcli ls silo/rwvp/    # 测试连通性</span><br></pre></td></tr></table></figure>
+<h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># 脚本: upload_and_clean.sh</span><br><span class="line"># 功能: 将 /data/tmp/rwvp/ 中的文件上传到 silo/rwvp，保持目录结构，</span><br><span class="line">#       上传成功后删除本地文件，并记录所有操作到日志文件。</span><br><span class="line"></span><br><span class="line">set -o pipefail</span><br><span class="line"></span><br><span class="line"># ========== 配置区 ==========</span><br><span class="line">SOURCE=&quot;/data/tmp/rwvp&quot;</span><br><span class="line">TARGET=&quot;silo/rwvp&quot;</span><br><span class="line">MCLI=&quot;/usr/local/bin/mcli&quot;</span><br><span class="line"></span><br><span class="line"># 日志文件路径（默认为脚本所在目录下的 upload.log）</span><br><span class="line">LOG_DIR=&quot;$(cd &quot;$(dirname &quot;$0&quot;)&quot; &amp;&amp; pwd)/logs&quot;</span><br><span class="line">LOG_FILE=&quot;$LOG_DIR/upload_$(date +%Y%m%d).log&quot;   # 按天分割，或使用固定名称</span><br><span class="line"># 如果想用固定名称，可改为 LOG_FILE=&quot;$LOG_DIR/upload.log&quot;</span><br><span class="line"></span><br><span class="line"># ========== 初始化日志目录 ==========</span><br><span class="line">if ! mkdir -p &quot;$LOG_DIR&quot; 2&gt;/dev/null; then</span><br><span class="line">    echo &quot;警告：无法创建日志目录 $LOG_DIR，将日志输出到标准错误。&quot; &gt;&amp;2</span><br><span class="line">    LOG_FILE=&quot;/dev/stderr&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># ========== 日志函数 ==========</span><br><span class="line">log_message() &#123;</span><br><span class="line">    local status=&quot;$1&quot;</span><br><span class="line">    local file_path=&quot;$2&quot;</span><br><span class="line">    local reason=&quot;$&#123;3:-&#125;&quot;</span><br><span class="line">    local timestamp=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">    if [ -z &quot;$reason&quot; ]; then</span><br><span class="line">        echo &quot;$timestamp | $status | $file_path&quot; &gt;&gt; &quot;$LOG_FILE&quot; 2&gt;/dev/null</span><br><span class="line">    else</span><br><span class="line">        echo &quot;$timestamp | $status | $file_path | $reason&quot; &gt;&gt; &quot;$LOG_FILE&quot; 2&gt;/dev/null</span><br><span class="line">    fi</span><br><span class="line">    # 如果日志写入失败，则输出到标准错误</span><br><span class="line">    if [ $? -ne 0 ]; then</span><br><span class="line">        echo &quot;错误：无法写入日志文件 $LOG_FILE&quot; &gt;&amp;2</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log_success() &#123;</span><br><span class="line">    log_message &quot;SUCCESS&quot; &quot;$1&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log_failure() &#123;</span><br><span class="line">    log_message &quot;FAILED&quot; &quot;$1&quot; &quot;$2&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># ========== 环境检查 ==========</span><br><span class="line">if [ ! -d &quot;$SOURCE&quot; ]; then</span><br><span class="line">    echo &quot;错误：源目录 $SOURCE 不存在。&quot; &gt;&amp;2</span><br><span class="line">    log_failure &quot;SOURCE_DIR&quot; &quot;Directory $SOURCE does not exist&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ ! -x &quot;$MCLI&quot; ]; then</span><br><span class="line">    echo &quot;错误：$MCLI 未找到或不可执行。&quot; &gt;&amp;2</span><br><span class="line">    log_failure &quot;MCLI&quot; &quot;Command $MCLI not found or not executable&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># ========== 执行上传与清理 ==========</span><br><span class="line">cd &quot;$SOURCE&quot; || exit 1</span><br><span class="line">failure_count=0</span><br><span class="line"></span><br><span class="line">while IFS= read -r -d &#x27;&#x27; file; do</span><br><span class="line">    rel_path=&quot;$&#123;file#./&#125;&quot;</span><br><span class="line">    [ -z &quot;$rel_path&quot; ] &amp;&amp; continue</span><br><span class="line"></span><br><span class="line">    echo &quot;正在上传: $rel_path&quot;</span><br><span class="line">    if &quot;$MCLI&quot; cp &quot;$SOURCE/$rel_path&quot; &quot;$TARGET/$rel_path&quot; &gt;/dev/null 2&gt;&amp;1; then</span><br><span class="line">        # 上传成功，尝试删除本地文件</span><br><span class="line">        if rm &quot;$SOURCE/$rel_path&quot;; then</span><br><span class="line">            echo &quot;已上传并删除: $rel_path&quot;</span><br><span class="line">            log_success &quot;$rel_path&quot;</span><br><span class="line">        else</span><br><span class="line">            echo &quot;错误：删除本地文件失败: $rel_path&quot; &gt;&amp;2</span><br><span class="line">            log_failure &quot;$rel_path&quot; &quot;Upload succeeded but local deletion failed&quot;</span><br><span class="line">            failure_count=$((failure_count + 1))</span><br><span class="line">        fi</span><br><span class="line">    else</span><br><span class="line">        echo &quot;错误：上传失败: $rel_path&quot; &gt;&amp;2</span><br><span class="line">        log_failure &quot;$rel_path&quot; &quot;Upload failed (mcli cp returned non-zero)&quot;</span><br><span class="line">        failure_count=$((failure_count + 1))</span><br><span class="line">    fi</span><br><span class="line">done &lt; &lt;(find . -type f -print0)</span><br><span class="line"></span><br><span class="line"># ========== 汇总结果 ==========</span><br><span class="line">if [ $failure_count -eq 0 ]; then</span><br><span class="line">    echo &quot;所有文件上传并清理成功。&quot;</span><br><span class="line">    log_success &quot;ALL&quot; &quot;All files processed successfully&quot;</span><br><span class="line">    exit 0</span><br><span class="line">else</span><br><span class="line">    echo &quot;有 $failure_count 个文件上传或删除失败，请检查日志 $LOG_FILE&quot; &gt;&amp;2</span><br><span class="line">    log_failure &quot;SUMMARY&quot; &quot;Total failures: $failure_count&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h3 id="授权并执行"><a href="#授权并执行" class="headerlink" title="授权并执行"></a>授权并执行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x upload_and_clean.sh</span><br><span class="line">./upload_and_clean.sh</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/">http://example.com/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/minio/">minio</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/08/31/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></a><a class="pagination-related" href="/2026/07/14/pgsql%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97_keepalived_repmgr/" title="pgsql集群搭建指南_keepalived_repmgr"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">pgsql集群搭建指南_keepalived_repmgr</div></div><div class="info-2"><div class="info-item-1">PostgreSQL 高可用集群搭建指南 Keepalived + repmgr + PostgreSQL 16.0 完整部署手册   📖 阅读指南本文档面向技术小白和运维新手，采用”先讲概念、再给命令、每条配置都加注释”的方式，帮助你从零搭建一套生产级 PostgreSQL 高可用集群。  💡 小贴士： 每个配置项旁边的 # ← 注释会用大白话解释它的作用，不用担心看不懂。   📋 目录 概念速览 — 先搞懂每个组件是干什么的 集群环境规划 — 几台服务器、什么角色 安装 PostgreSQL 16.0 安装配置 repmgr（主从复制管理） 安装配置 Keepalived（VIP 漂移） 集群验证测试 故障处理：脑裂修复 常用命令速查   1. 概念速览1.1 这套方案解决了什么问题？想象你只有一台 PostgreSQL 数据库，某天它突然挂了——你的整个业务就瘫痪了。 这套方案用三个组件协作，实现 自动故障转移： 123456789101112131415161718192021222324┌──────────────────────────────────────...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">部署环境：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Podman%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2Silo"><span class="toc-number">2.</span> <span class="toc-text">一、Podman容器部署Silo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AEnginx%E8%BD%AC%E5%8F%91"><span class="toc-number">3.</span> <span class="toc-text">二、配置nginx转发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8mc%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB"><span class="toc-number">4.</span> <span class="toc-text">三、使用mc本地模式进行数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-number">4.1.</span> <span class="toc-text">配置ssh免密登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86minio%E8%BF%9C%E7%AB%AF%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.2.</span> <span class="toc-text">将minio远端文件同步到本地</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%AB%AFminio-rwvp%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.1.</span> <span class="toc-text">远端minio rwvp目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8rsync%E5%B0%86%E8%BF%9C%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86%E7%9B%AE%E5%BD%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.2.2.</span> <span class="toc-text">使用rsync将远端数据中的部分目录同步到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8scp%E5%B0%86%E8%BF%9C%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E9%83%A8%E5%88%86%E7%9B%AE%E5%BD%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.2.3.</span> <span class="toc-text">使用scp将远端数据中的部分目录同步到本地</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mc%E8%BF%9B%E8%A1%8C%E4%B8%8A%E4%BC%A0"><span class="toc-number">4.3.</span> <span class="toc-text">使用mc进行上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85mcli"><span class="toc-number">4.3.1.</span> <span class="toc-text">服务器安装mcli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mc%E6%B7%BB%E5%8A%A0minio%E5%BA%93"><span class="toc-number">4.3.2.</span> <span class="toc-text">使用mc添加minio库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">4.3.3.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%E5%B9%B6%E6%89%A7%E8%A1%8C"><span class="toc-number">4.3.4.</span> <span class="toc-text">授权并执行</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/31/hello-world/" title="Hello World">Hello World</a><time datetime="2026-08-31T09:22:20.240Z" title="Created 2026-08-31 17:22:20">2026-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/" title="Untitled">Untitled</a><time datetime="2026-08-28T01:12:43.000Z" title="Created 2026-08-28 09:12:43">2026-08-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/14/pgsql%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97_keepalived_repmgr/" title="pgsql集群搭建指南_keepalived_repmgr">pgsql集群搭建指南_keepalived_repmgr</a><time datetime="2026-07-14T10:21:00.000Z" title="Created 2026-07-14 18:21:00">2026-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E9%BA%92%E9%BA%9Fv10%20PostgreSQL%20%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" title="麒麟v10 PostgreSQL 数据迁移">麒麟v10 PostgreSQL 数据迁移</a><time datetime="2026-03-31T03:37:00.000Z" title="Created 2026-03-31 11:37:00">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/04/Ubuntu1604%E5%8D%87%E7%BA%A7OpenSSH/" title="Ubuntu1604升级OpenSSH">Ubuntu1604升级OpenSSH</a><time datetime="2026-03-04T09:54:43.000Z" title="Created 2026-03-04 17:54:43">2026-03-04</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
