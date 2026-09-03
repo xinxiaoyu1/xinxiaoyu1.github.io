@@ -1,0 +1,933 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>扫雷 | 小雨的小窝</title><meta name="author" content="XiaoYu"><meta name="copyright" content="XiaoYu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .minesweeper-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .minesweeper-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="扫雷">
+<meta property="og:url" content="https://xinxiaoyu1.github.io/games/minesweeper/index.html">
+<meta property="og:site_name" content="小雨的小窝">
+<meta property="og:description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .minesweeper-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .minesweeper-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg">
+<meta property="article:published_time" content="2026-09-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-03T10:08:51.222Z">
+<meta property="article:author" content="XiaoYu">
+<meta property="article:tag" content="博客;技术;日常;分享;k8s;linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/favicon.jpg"><link rel="canonical" href="https://xinxiaoyu1.github.io/games/minesweeper/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const start = 8
+              const end = 22
+              const isNight =
+                start < end
+                    ? hour < start || hour >= end
+                    : hour >= start || hour < end
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?eeac0ceac01ecb2c82b0180423fd2451";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":true,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '扫雷',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><meta name="generator" content="Hexo 8.1.2"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div class="bg-animation" id="web_bg" style="background: linear-gradient(120deg, #fef3d7, #fde2c4, #fccfcf);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page type-games" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/top_img.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小雨的小窝</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">扫雷</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
+<style>
+  /* ====== 所有样式限定在 .minesweeper-container 内，不影响主题 ====== */
+  .minesweeper-container {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #e0e0e0;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .minesweeper-container h2 {
+    margin: 10px 0;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: inherit;
+    border-bottom: none; /* 移除主题可能的下划线 */
+  }
+  .minesweeper-container .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .minesweeper-container .controls button,
+  .minesweeper-container .controls select {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #16213e;
+    color: #e0e0e0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .minesweeper-container .controls button:hover,
+  .minesweeper-container .controls select:hover {
+    background: #0f3460;
+  }
+  .minesweeper-container .controls button.active {
+    background: #e94560;
+  }
+  .minesweeper-container .controls label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+  }
+  .minesweeper-container .controls input[type="range"] {
+    width: 100px;
+    cursor: pointer;
+    background: #333;
+    height: 4px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .minesweeper-container .controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #e94560;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .minesweeper-container .status {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+  .minesweeper-container .status div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .minesweeper-container .board-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0 4px;
+    max-height: calc(100vh - 240px);
+  }
+  .minesweeper-container .board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center center;
+    transition: transform 0.1s ease;
+  }
+  .minesweeper-container .board {
+    display: grid;
+    gap: 1px;
+    background: #333;
+    border: 2px solid #333;
+    padding: 1px;
+    border-radius: 4px;
+  }
+  .minesweeper-container .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #b0b0b0;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background .1s;
+    position: relative;
+  }
+  .minesweeper-container .cell:hover {
+    background: #c0c0c0;
+  }
+  .minesweeper-container .cell.revealed {
+    background: #e0e0e0;
+    cursor: default;
+    pointer-events: none;
+  }
+  .minesweeper-container .cell.mine {
+    background: #e74c3c;
+  }
+  .minesweeper-container .cell.flagged::after {
+    content: '🚩';
+    font-size: 15px;
+  }
+  .minesweeper-container .cell.question::after {
+    content: '❓';
+    font-size: 15px;
+  }
+  .minesweeper-container .num-1 { color: #0000ff; }
+  .minesweeper-container .num-2 { color: #008000; }
+  .minesweeper-container .num-3 { color: #ff0000; }
+  .minesweeper-container .num-4 { color: #000080; }
+  .minesweeper-container .num-5 { color: #800000; }
+  .minesweeper-container .num-6 { color: #008080; }
+  .minesweeper-container .num-7 { color: #000; }
+  .minesweeper-container .num-8 { color: #808080; }
+  .minesweeper-container .message {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+  }
+  .minesweeper-container .win {
+    color: #2ecc71;
+    background: rgba(46, 204, 113, 0.15);
+  }
+  .minesweeper-container .lose {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.15);
+  }
+
+  /* 自定义滚动条（可选） */
+  .minesweeper-container .board-wrapper::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  .minesweeper-container .board-wrapper::-webkit-scrollbar-track {
+    background: #2a2a3e;
+    border-radius: 6px;
+  }
+  .minesweeper-container .board-wrapper::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 6px;
+  }
+  .minesweeper-container .board-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  /* 移动端适配 */
+  @media (max-width: 600px) {
+    .minesweeper-container .controls button {
+      padding: 6px 12px;
+      font-size: .9rem;
+    }
+    .minesweeper-container .status {
+      font-size: 1rem;
+    }
+    .minesweeper-container .controls input[type="range"] {
+      width: 80px;
+    }
+  }
+</style>
+
+<div class="minesweeper-container">
+  <h2>💣 扫雷</h2>
+
+  <div class="controls">
+    <select id="difficulty">
+      <option value="easy">初级 9×9 (10雷)</option>
+      <option value="medium">中级 16×16 (40雷)</option>
+      <option value="hard">高级 30×16 (99雷)</option>
+    </select>
+    <button id="newGameBtn">🔄 新游戏</button>
+    <label>
+      <span>缩放</span>
+      <input type="range" id="scaleSlider" min="0.4" max="1.5" step="0.05" value="1.0">
+      <span id="scaleLabel">100%</span>
+    </label>
+  </div>
+
+  <div class="status">
+    <div>💣 剩余: <span id="mineCount">10</span></div>
+    <div>⏱️ 时间: <span id="timer">0</span>s</div>
+    <div id="gameMessage"></div>
+  </div>
+
+  <div class="board-wrapper">
+    <div class="board-container" id="boardContainer">
+      <div class="board" id="board"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ==================== 配置 ====================
+    const DIFFICULTIES = {
+      easy:   { cols:9,  rows:9,  mines:10 },
+      medium: { cols:16, rows:16, mines:40 },
+      hard:   { cols:30, rows:16, mines:99 }
+    };
+
+    // ==================== 状态 ====================
+    let diff = 'easy';
+    let grid = [];
+    let cols, rows, totalMines;
+    let isFirstClick = true;
+    let gameOver = false;
+    let revealedCount = 0;
+    let flagCount = 0;
+    let timer = 0;
+    let timerInterval = null;
+    let currentScale = 1.0;
+
+    // DOM
+    const boardEl = document.getElementById('board');
+    const boardContainer = document.getElementById('boardContainer');
+    const mineCountEl = document.getElementById('mineCount');
+    const timerEl = document.getElementById('timer');
+    const msgEl = document.getElementById('gameMessage');
+    const diffSelect = document.getElementById('difficulty');
+    const newGameBtn = document.getElementById('newGameBtn');
+    const scaleSlider = document.getElementById('scaleSlider');
+    const scaleLabel = document.getElementById('scaleLabel');
+
+    // ==================== 计算基础格子尺寸 ====================
+    function getBaseCellSize(cols, rows) {
+      const scrollBarWidth = 17;
+      const padding = 20;
+      const maxWidth = Math.min(window.innerWidth - padding - scrollBarWidth, 1200);
+      const maxHeight = window.innerHeight - 240; // 适应主题布局
+
+      const gapTotalX = (cols - 1) * 1 + 2;
+      const gapTotalY = (rows - 1) * 1 + 2;
+      const maxSizeX = Math.floor((maxWidth - gapTotalX) / cols);
+      const maxSizeY = Math.floor((maxHeight - gapTotalY) / rows);
+
+      let size = Math.min(maxSizeX, maxSizeY);
+      size = Math.max(12, Math.min(40, size));
+      return size;
+    }
+
+    // ==================== 应用缩放 ====================
+    function applyScale(scale) {
+      currentScale = scale;
+      const boardWidth = boardEl.offsetWidth;
+      const boardHeight = boardEl.offsetHeight;
+      boardContainer.style.width = (boardWidth * scale) + 'px';
+      boardContainer.style.height = (boardHeight * scale) + 'px';
+      boardContainer.style.transform = `scale(${scale})`;
+      scaleLabel.textContent = Math.round(scale * 100) + '%';
+    }
+
+    // ==================== 初始化 ====================
+    function init() {
+      const d = DIFFICULTIES[diff];
+      cols = d.cols; rows = d.rows; totalMines = d.mines;
+      grid = [];
+      gameOver = false;
+      isFirstClick = true;
+      revealedCount = 0;
+      flagCount = 0;
+      timer = 0;
+      clearInterval(timerInterval); timerInterval = null;
+
+      msgEl.className = '';
+      msgEl.textContent = '';
+      timerEl.textContent = '0';
+      mineCountEl.textContent = totalMines;
+
+      const baseSize = getBaseCellSize(cols, rows);
+
+      boardEl.style.gridTemplateColumns = `repeat(${cols}, ${baseSize}px)`;
+      boardEl.style.gridTemplateRows = `repeat(${rows}, ${baseSize}px)`;
+      boardEl.innerHTML = '';
+
+      for (let r = 0; r < rows; r++) {
+        grid[r] = [];
+        for (let c = 0; c < cols; c++) {
+          grid[r][c] = {
+            r, c, mine: false, revealed: false, flagged: false, questioned: false,
+            neighborMines: 0
+          };
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.dataset.r = r;
+          cell.dataset.c = c;
+          cell.style.width = baseSize + 'px';
+          cell.style.height = baseSize + 'px';
+          const fontSize = Math.max(8, Math.min(14, baseSize * 0.45));
+          cell.style.fontSize = fontSize + 'px';
+
+          cell.addEventListener('click', (e) => handleClick(r, c, e));
+          cell.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            handleRightClick(r, c, e);
+          });
+          cell.addEventListener('touchstart', (e) => handleTouch(r, c, e), { passive: false });
+
+          boardEl.appendChild(cell);
+          grid[r][c].el = cell;
+        }
+      }
+
+      requestAnimationFrame(() => {
+        applyScale(currentScale);
+      });
+    }
+
+    // ==================== 布雷 ====================
+    function placeMines(safeR, safeC) {
+      const safeCells = new Set();
+      for (let dr = -1; dr <= 1; dr++) {
+        for (let dc = -1; dc <= 1; dc++) {
+          const nr = safeR + dr, nc = safeC + dc;
+          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+            safeCells.add(nr * cols + nc);
+          }
+        }
+      }
+
+      let placed = 0;
+      while (placed < totalMines) {
+        const r = Math.floor(Math.random() * rows);
+        const c = Math.floor(Math.random() * cols);
+        if (!grid[r][c].mine && !safeCells.has(r * cols + c)) {
+          grid[r][c].mine = true;
+          placed++;
+        }
+      }
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          if (grid[r][c].mine) continue;
+          let count = 0;
+          forEachNeighbor(r, c, (nr, nc) => { if (grid[nr][nc].mine) count++; });
+          grid[r][c].neighborMines = count;
+        }
+      }
+    }
+
+    function forEachNeighbor(r, c, cb) {
+      for (let dr = -1; dr <= 1; dr++) {
+        for (let dc = -1; dc <= 1; dc++) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+            cb(nr, nc);
+          }
+        }
+      }
+    }
+
+    // ==================== 交互事件 ====================
+    function handleClick(r, c, e) {
+      if (gameOver || grid[r][c].flagged || grid[r][c].questioned) return;
+
+      if (isFirstClick) {
+        isFirstClick = false;
+        placeMines(r, c);
+        startTimer();
+      }
+
+      const cell = grid[r][c];
+      if (cell.revealed) return;
+
+      if (cell.mine) {
+        cell.el.classList.add('mine');
+        cell.el.textContent = '💥';
+        revealAllMines();
+        endGame(false);
+        return;
+      }
+
+      revealCell(r, c);
+      checkWin();
+    }
+
+    function handleRightClick(r, c, e) {
+      if (gameOver || grid[r][c].revealed) return;
+      const cell = grid[r][c];
+      if (!cell.flagged && !cell.questioned) {
+        cell.flagged = true;
+        cell.el.classList.add('flagged');
+        flagCount++;
+      } else if (cell.flagged) {
+        cell.flagged = false;
+        cell.el.classList.remove('flagged');
+        cell.questioned = true;
+        cell.el.classList.add('questioned');
+        flagCount--;
+      } else if (cell.questioned) {
+        cell.questioned = false;
+        cell.el.classList.remove('questioned');
+      }
+      mineCountEl.textContent = totalMines - flagCount;
+    }
+
+    function handleTouch(r, c, e) {
+      e.preventDefault();
+      let held;
+      const onUp = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        clearTimeout(held);
+        document.removeEventListener('touchend', onUp);
+        document.removeEventListener('touchmove', onUp);
+        handleClick(r, c, e);
+      };
+      document.addEventListener('touchend', onUp);
+      document.addEventListener('touchmove', onUp);
+      held = setTimeout(() => {
+        handleRightClick(r, c, e);
+        navigator.vibrate && navigator.vibrate(50);
+      }, 500);
+    }
+
+    // ==================== 揭开格子 ====================
+    function revealCell(r, c) {
+      const cell = grid[r][c];
+      if (cell.revealed || cell.flagged || cell.questioned || cell.mine) return;
+
+      cell.revealed = true;
+      const el = cell.el;
+      el.classList.add('revealed');
+      revealedCount++;
+
+      if (cell.neighborMines > 0) {
+        el.textContent = cell.neighborMines;
+        el.classList.add('num-' + cell.neighborMines);
+      } else {
+        forEachNeighbor(r, c, (nr, nc) => {
+          revealCell(nr, nc);
+        });
+      }
+    }
+
+    function revealAllMines() {
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.mine && !cell.flagged) {
+            cell.el.classList.add('mine');
+            cell.el.textContent = '💣';
+          } else if (!cell.mine && cell.flagged) {
+            cell.el.textContent = '❌';
+          }
+        }
+      }
+    }
+
+    function checkWin() {
+      const safeCells = rows * cols - totalMines;
+      if (revealedCount === safeCells) {
+        endGame(true);
+      }
+    }
+
+    function endGame(won) {
+      gameOver = true;
+      clearInterval(timerInterval);
+      if (won) {
+        msgEl.textContent = `🎉 胜利！用时 ${timer} 秒`;
+        msgEl.className = 'message win';
+      } else {
+        msgEl.textContent = '💥 游戏结束！';
+        msgEl.className = 'message lose';
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        timer++;
+        timerEl.textContent = timer;
+      }, 1000);
+    }
+
+    // ==================== 窗口resize ====================
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (gameOver || isFirstClick) {
+          init();
+        }
+      }, 300);
+    });
+
+    // ==================== 缩放控制 ====================
+    scaleSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      applyScale(val);
+    });
+
+    // ==================== 切换难度、新游戏 ====================
+    diffSelect.addEventListener('change', () => {
+      diff = diffSelect.value;
+      scaleSlider.value = '1.0';
+      currentScale = 1.0;
+      init();
+    });
+    newGameBtn.addEventListener('click', () => {
+      scaleSlider.value = '1.0';
+      currentScale = 1.0;
+      init();
+    });
+
+    // ==================== 启动游戏 ====================
+    init();
+  })();
+</script>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">XiaoYu</div><div class="author-info-description">咸鱼永不翻身！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinxiaoyu1"><i class="fab fa-github"></i><span>关注我喵！</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xinxiaoyu1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:924084608@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">目前没想出来什么骚话，先喵一个<br> 喵~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/" title="部署Silo并迁移minio数据">部署Silo并迁移minio数据</a><time datetime="2026-08-27T16:00:00.000Z" title="发表于 2026-08-28 00:00:00">2026-08-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/14/pgsql%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97_keepalived_repmgr/" title="pgsql集群搭建指南_keepalived_repmgr">pgsql集群搭建指南_keepalived_repmgr</a><time datetime="2026-07-13T16:00:00.000Z" title="发表于 2026-07-14 00:00:00">2026-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E9%BA%92%E9%BA%9Fv10%20PostgreSQL%20%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" title="麒麟v10 PostgreSQL 数据迁移">麒麟v10 PostgreSQL 数据迁移</a><time datetime="2026-03-30T16:00:00.000Z" title="发表于 2026-03-31 00:00:00">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/04/Ubuntu1604%E5%8D%87%E7%BA%A7OpenSSH/" title="Ubuntu1604升级OpenSSH">Ubuntu1604升级OpenSSH</a><time datetime="2026-03-03T16:00:00.000Z" title="发表于 2026-03-04 00:00:00">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/05/openEuler%2022.03%20LTS%E7%B3%BB%E7%BB%9F%E7%BD%91%E5%8D%A1bond%E5%92%8Cvlan%E9%85%8D%E7%BD%AE/" title="openEuler 22.03 LTS系统网卡bond和vlan配置">openEuler 22.03 LTS系统网卡bond和vlan配置</a><time datetime="2026-01-04T16:00:00.000Z" title="发表于 2026-01-05 00:00:00">2026-01-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Kubernetes/"><span class="card-category-list-name">Kubernetes</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/"><span class="card-category-list-name">服务部署</span><span class="card-category-list-count">6</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.45em; color: rgb(101, 131, 83);">技术</a><a href="/tags/Linux/" style="font-size: 1.38em; color: rgb(130, 56, 146);">Linux</a><a href="/tags/Ubuntu/" style="font-size: 1.22em; color: rgb(50, 194, 198);">Ubuntu</a><a href="/tags/OpenSSH/" style="font-size: 1.15em; color: rgb(166, 137, 126);">OpenSSH</a><a href="/tags/K8S/" style="font-size: 1.3em; color: rgb(85, 190, 64);">K8S</a><a href="/tags/openEuler/" style="font-size: 1.15em; color: rgb(196, 153, 102);">openEuler</a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(77, 190, 60);">网络</a><a href="/tags/glibc/" style="font-size: 1.15em; color: rgb(177, 60, 50);">glibc</a><a href="/tags/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6/" style="font-size: 1.15em; color: rgb(88, 75, 179);">远程控制</a><a href="/tags/RustDesk/" style="font-size: 1.15em; color: rgb(91, 168, 71);">RustDesk</a><a href="/tags/Kylin/" style="font-size: 1.22em; color: rgb(168, 50, 106);">Kylin</a><a href="/tags/PostgreSQL/" style="font-size: 1.3em; color: rgb(110, 117, 80);">PostgreSQL</a><a href="/tags/%E5%A4%87%E4%BB%BD/" style="font-size: 1.15em; color: rgb(50, 153, 67);">备份</a><a href="/tags/minio/" style="font-size: 1.15em; color: rgb(50, 50, 50);">minio</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.22em; color: rgb(96, 153, 79);">数据库</a><a href="/tags/kingbase/" style="font-size: 1.15em; color: rgb(136, 87, 132);">kingbase</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/08/">
+            <span class="card-archive-list-date">
+              八月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              七月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">12</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">43.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-09-03T10:09:25.397Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2024 - 2026 By XiaoYu</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><script src="/js/tw_cn.js?v=5.7.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索内容" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.7.0"></script></div></div></body></html>
