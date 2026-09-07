@@ -1,17 +1,17 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>扫雷 | 小雨的小窝</title><meta name="author" content="XiaoYu"><meta name="copyright" content="XiaoYu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .minesweeper-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .minesweeper-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>贪吃蛇 | 小雨的小窝</title><meta name="author" content="XiaoYu"><meta name="copyright" content="XiaoYu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .snake-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .snake-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;     padding:">
 <meta property="og:type" content="website">
-<meta property="og:title" content="扫雷">
-<meta property="og:url" content="https://xinxiaoyu1.github.io/games/minesweeper/index.html">
+<meta property="og:title" content="贪吃蛇">
+<meta property="og:url" content="https://xinxiaoyu1.github.io/games/snake/index.html">
 <meta property="og:site_name" content="小雨的小窝">
-<meta property="og:description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .minesweeper-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .minesweeper-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;">
+<meta property="og:description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 所有样式限定在 .snake-container 内，不影响主题 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   .snake-container {     font-family: &#39;Segoe UI&#39;, Arial, sans-serif;     color: #e0e0e0;     max-width: 100%;     margin: 0 auto;     padding:">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg">
-<meta property="article:published_time" content="2026-09-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-03T10:08:51.222Z">
+<meta property="article:published_time" content="2026-09-03T05:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-07T10:31:49.622Z">
 <meta property="article:author" content="XiaoYu">
 <meta property="article:tag" content="博客;技术;日常;分享;k8s;linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/favicon.jpg"><link rel="canonical" href="https://xinxiaoyu1.github.io/games/minesweeper/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/favicon.jpg"><link rel="canonical" href="https://xinxiaoyu1.github.io/games/snake/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
     (() => {
       
     const saveToLocal = {
@@ -215,7 +215,7 @@ btf.addGlobalFn('pjaxComplete', () => {
   },
   autoDarkmode: true
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '扫雷',
+  title: '贪吃蛇',
   isHighlightShrink: false,
   isToc: false,
   pageType: 'page'
@@ -227,10 +227,10 @@ btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
 }, 'pace_restart')
 
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div class="bg-animation" id="web_bg" style="background: linear-gradient(120deg, #fef3d7, #fde2c4, #fccfcf);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page type-games" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/top_img.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小雨的小窝</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">扫雷</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div class="bg-animation" id="web_bg" style="background: linear-gradient(120deg, #fef3d7, #fde2c4, #fccfcf);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page type-games" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/top_img.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小雨的小窝</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">贪吃蛇</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
 <style>
-  /* ====== 所有样式限定在 .minesweeper-container 内，不影响主题 ====== */
-  .minesweeper-container {
+  /* ====== 所有样式限定在 .snake-container 内，不影响主题 ====== */
+  .snake-container {
     font-family: 'Segoe UI', Arial, sans-serif;
     color: #e0e0e0;
     max-width: 100%;
@@ -242,534 +242,486 @@ btf.addGlobalFn('pjaxSend', () => {
     flex-direction: column;
     align-items: center;
   }
-  .minesweeper-container h2 {
+  .snake-container h2 {
     margin: 10px 0;
     font-size: 1.8rem;
     letter-spacing: 2px;
     color: inherit;
-    border-bottom: none; /* 移除主题可能的下划线 */
+    border-bottom: none;
   }
-  .minesweeper-container .controls {
+  .snake-container .game-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .snake-container .side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 120px;
+  }
+  .snake-container .panel {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .snake-container .panel .label {
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .snake-container .panel .value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 12px rgba(255,255,255,0.3);
+  }
+  /* 三个数值用不同颜色突出显示 */
+  .snake-container .value.score-value {
+    color: #ffd700;
+    text-shadow: 0 0 14px rgba(255,215,0,0.55);
+  }
+  .snake-container .value.speed-value {
+    color: #00e5ff;
+    text-shadow: 0 0 14px rgba(0,229,255,0.55);
+  }
+  .snake-container .value.high-value {
+    color: #22c55e;
+    text-shadow: 0 0 14px rgba(34,197,94,0.55);
+  }
+  .snake-container .num-box {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 68px;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+  .snake-container #boardCanvas {
+    background: rgba(0,0,0,0.55);
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .snake-container .controls {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 10px 0;
     justify-content: center;
-    align-items: center;
+    margin: 16px 0 4px;
   }
-  .minesweeper-container .controls button,
-  .minesweeper-container .controls select {
-    padding: 8px 16px;
+  .snake-container .controls button {
+    padding: 10px 18px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #16213e;
     color: #e0e0e0;
     font-size: 1rem;
     cursor: pointer;
-    transition: background .2s;
+    transition: background .2s, transform .1s;
   }
-  .minesweeper-container .controls button:hover,
-  .minesweeper-container .controls select:hover {
-    background: #0f3460;
-  }
-  .minesweeper-container .controls button.active {
-    background: #e94560;
-  }
-  .minesweeper-container .controls label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.95rem;
-    color: #e0e0e0;
-  }
-  .minesweeper-container .controls input[type="range"] {
-    width: 100px;
-    cursor: pointer;
-    background: #333;
-    height: 4px;
-    border-radius: 2px;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .minesweeper-container .controls input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background: #e94560;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .minesweeper-container .status {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 10px 0;
+  .snake-container .controls button:hover { background: #0f3460; }
+  .snake-container .controls button:active { transform: scale(0.97); }
+  .snake-container .controls button.primary { background: #e94560; }
+  .snake-container .controls button.primary:hover { background: #c23152; }
+  .snake-container .status {
     font-size: 1.1rem;
+    min-height: 1.6em;
+    text-align: center;
   }
-  .minesweeper-container .status div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .minesweeper-container .board-wrapper {
+  .snake-container .status.gameover { color: #e74c3c; }
+  .snake-container .status.paused { color: #f1c40f; }
+
+  /* 移动端触控按钮 */
+  .snake-container .touch-controls {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow-x: auto;
-    overflow-y: auto;
-    padding: 0 4px;
-    max-height: calc(100vh - 240px);
+    max-width: 240px;
+    margin-top: 8px;
   }
-  .minesweeper-container .board-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform-origin: center center;
-    transition: transform 0.1s ease;
-  }
-  .minesweeper-container .board {
-    display: grid;
-    gap: 1px;
-    background: #333;
-    border: 2px solid #333;
-    padding: 1px;
-    border-radius: 4px;
-  }
-  .minesweeper-container .cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #b0b0b0;
-    font-weight: bold;
+  .snake-container .touch-controls button {
+    padding: 14px 0;
+    font-size: 1.3rem;
+    background: #16213e;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #e0e0e0;
     cursor: pointer;
-    border-radius: 2px;
-    transition: background .1s;
-    position: relative;
+    touch-action: manipulation;
   }
-  .minesweeper-container .cell:hover {
-    background: #c0c0c0;
-  }
-  .minesweeper-container .cell.revealed {
-    background: #e0e0e0;
-    cursor: default;
-    pointer-events: none;
-  }
-  .minesweeper-container .cell.mine {
-    background: #e74c3c;
-  }
-  .minesweeper-container .cell.flagged::after {
-    content: '🚩';
-    font-size: 15px;
-  }
-  .minesweeper-container .cell.question::after {
-    content: '❓';
-    font-size: 15px;
-  }
-  .minesweeper-container .num-1 { color: #0000ff; }
-  .minesweeper-container .num-2 { color: #008000; }
-  .minesweeper-container .num-3 { color: #ff0000; }
-  .minesweeper-container .num-4 { color: #000080; }
-  .minesweeper-container .num-5 { color: #800000; }
-  .minesweeper-container .num-6 { color: #008080; }
-  .minesweeper-container .num-7 { color: #000; }
-  .minesweeper-container .num-8 { color: #808080; }
-  .minesweeper-container .message {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    padding: 10px 20px;
-    border-radius: 6px;
-  }
-  .minesweeper-container .win {
-    color: #2ecc71;
-    background: rgba(46, 204, 113, 0.15);
-  }
-  .minesweeper-container .lose {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.15);
-  }
+  .snake-container .touch-controls button:active { background: #0f3460; }
+  /* 十字方向键布局 */
+  .snake-container .touch-controls .up    { grid-column: 2; grid-row: 1; }
+  .snake-container .touch-controls .left  { grid-column: 1; grid-row: 2; }
+  .snake-container .touch-controls .down  { grid-column: 2; grid-row: 2; }
+  .snake-container .touch-controls .right { grid-column: 3; grid-row: 2; }
 
-  /* 自定义滚动条（可选） */
-  .minesweeper-container .board-wrapper::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-  }
-  .minesweeper-container .board-wrapper::-webkit-scrollbar-track {
-    background: #2a2a3e;
-    border-radius: 6px;
-  }
-  .minesweeper-container .board-wrapper::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 6px;
-  }
-  .minesweeper-container .board-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #777;
-  }
-
-  /* 移动端适配 */
   @media (max-width: 600px) {
-    .minesweeper-container .controls button {
-      padding: 6px 12px;
-      font-size: .9rem;
-    }
-    .minesweeper-container .status {
-      font-size: 1rem;
-    }
-    .minesweeper-container .controls input[type="range"] {
-      width: 80px;
-    }
+    .snake-container .game-wrap { flex-direction: column; align-items: center; }
+    .snake-container .side { flex-direction: row; flex-wrap: wrap; min-width: 0; justify-content: center; }
+    .snake-container .controls button { padding: 8px 14px; font-size: .9rem; }
+  }
+  @media (hover: none) and (pointer: coarse) {
+    .snake-container .touch-controls { display: grid; }
   }
 </style>
 
-<div class="minesweeper-container">
-  <h2>💣 扫雷</h2>
+<div class="snake-container">
+  <h2>🐍 贪吃蛇</h2>
+
+  <div class="game-wrap">
+    <canvas id="boardCanvas" width="400" height="400"></canvas>
+
+    <div class="side">
+      <div class="panel">
+        <div class="label">分数</div>
+        <div class="num-box">
+          <div class="value score-value" id="score">0</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="label">最高分</div>
+        <div class="num-box">
+          <div class="value high-value" id="high">0</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="label">速度</div>
+        <div class="num-box">
+          <div class="value speed-value" id="speed">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="controls">
-    <select id="difficulty">
-      <option value="easy">初级 9×9 (10雷)</option>
-      <option value="medium">中级 16×16 (40雷)</option>
-      <option value="hard">高级 30×16 (99雷)</option>
-    </select>
-    <button id="newGameBtn">🔄 新游戏</button>
-    <label>
-      <span>缩放</span>
-      <input type="range" id="scaleSlider" min="0.4" max="1.5" step="0.05" value="1.0">
-      <span id="scaleLabel">100%</span>
-    </label>
+    <button id="startBtn" class="primary">▶ 开始</button>
+    <button id="pauseBtn">⏸ 暂停</button>
   </div>
 
-  <div class="status">
-    <div>💣 剩余: <span id="mineCount">10</span></div>
-    <div>⏱️ 时间: <span id="timer">0</span>s</div>
-    <div id="gameMessage"></div>
-  </div>
+  <div class="status" id="status"></div>
 
-  <div class="board-wrapper">
-    <div class="board-container" id="boardContainer">
-      <div class="board" id="board"></div>
-    </div>
+  <div class="touch-controls">
+    <button data-act="up" class="up">⬆</button>
+    <button data-act="left" class="left">⬅</button>
+    <button data-act="down" class="down">⬇</button>
+    <button data-act="right" class="right">➡</button>
   </div>
 </div>
 
 <script>
   (function() {
     // ==================== 配置 ====================
-    const DIFFICULTIES = {
-      easy:   { cols:9,  rows:9,  mines:10 },
-      medium: { cols:16, rows:16, mines:40 },
-      hard:   { cols:30, rows:16, mines:99 }
-    };
+    const COLS = 20;          // 每行格子数
+    const ROWS = 20;          // 每列格子数
+    const BLOCK = 20;         // 每格像素（画布 400x400）
+    const BASE_INTERVAL = 150;  // 初始移动间隔（毫秒）
+    const BASE_SCORE = 10;      // 食物基础分（每吃一个得分 = 基础分 × 当前速度等级）
+    const EATEN_PER_LEVEL = 3;  // 每吃掉多少个果子，速度等级 +1
 
     // ==================== 状态 ====================
-    let diff = 'easy';
-    let grid = [];
-    let cols, rows, totalMines;
-    let isFirstClick = true;
+    let snake = [];            // 蛇身坐标数组（头在前）
+    let dir = 'right';         // 当前移动方向
+    let nextDir = 'right';     // 缓冲方向（防止一帧内连按反向）
+    let food = null;           // 当前食物 {r, c}
+    let score = 0;
+    let eatenCount = 0;        // 累计吃掉的果子数（用于升级速度）
+    let speedLevel = 1;        // 速度等级（1 起）
+    let running = false;
+    let paused = false;
     let gameOver = false;
-    let revealedCount = 0;
-    let flagCount = 0;
-    let timer = 0;
-    let timerInterval = null;
-    let currentScale = 1.0;
+    let moveTimer = null;
 
     // DOM
-    const boardEl = document.getElementById('board');
-    const boardContainer = document.getElementById('boardContainer');
-    const mineCountEl = document.getElementById('mineCount');
-    const timerEl = document.getElementById('timer');
-    const msgEl = document.getElementById('gameMessage');
-    const diffSelect = document.getElementById('difficulty');
-    const newGameBtn = document.getElementById('newGameBtn');
-    const scaleSlider = document.getElementById('scaleSlider');
-    const scaleLabel = document.getElementById('scaleLabel');
+    const canvas = document.getElementById('boardCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const highEl = document.getElementById('high');
+    const speedEl = document.getElementById('speed');
+    const statusEl = document.getElementById('status');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
 
-    // ==================== 计算基础格子尺寸 ====================
-    function getBaseCellSize(cols, rows) {
-      const scrollBarWidth = 17;
-      const padding = 20;
-      const maxWidth = Math.min(window.innerWidth - padding - scrollBarWidth, 1200);
-      const maxHeight = window.innerHeight - 240; // 适应主题布局
+    // 最高分（持久化）
+    let highScore = parseInt(localStorage.getItem('snake_high') || '0', 10);
+    highEl.textContent = highScore;
 
-      const gapTotalX = (cols - 1) * 1 + 2;
-      const gapTotalY = (rows - 1) * 1 + 2;
-      const maxSizeX = Math.floor((maxWidth - gapTotalX) / cols);
-      const maxSizeY = Math.floor((maxHeight - gapTotalY) / rows);
-
-      let size = Math.min(maxSizeX, maxSizeY);
-      size = Math.max(12, Math.min(40, size));
-      return size;
+    // 画布 DPI 适配
+    function setupCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = COLS * BLOCK * dpr;
+      canvas.height = ROWS * BLOCK * dpr;
+      canvas.style.width = (COLS * BLOCK) + 'px';
+      canvas.style.height = (ROWS * BLOCK) + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    // ==================== 应用缩放 ====================
-    function applyScale(scale) {
-      currentScale = scale;
-      const boardWidth = boardEl.offsetWidth;
-      const boardHeight = boardEl.offsetHeight;
-      boardContainer.style.width = (boardWidth * scale) + 'px';
-      boardContainer.style.height = (boardHeight * scale) + 'px';
-      boardContainer.style.transform = `scale(${scale})`;
-      scaleLabel.textContent = Math.round(scale * 100) + '%';
+    // ==================== 方向与碰撞 ====================
+    const DIRS = {
+      up:    { dr: -1, dc: 0 },
+      down:  { dr: 1,  dc: 0 },
+      left:  { dr: 0,  dc: -1 },
+      right: { dr: 0,  dc: 1 }
+    };
+    const OPPOSITE = { up: 'down', down: 'up', left: 'right', right: 'left' };
+
+    // 当前移动间隔（随速度等级加快）
+    function currentInterval() {
+      return Math.max(50, BASE_INTERVAL - (speedLevel - 1) * 12);
     }
 
-    // ==================== 初始化 ====================
-    function init() {
-      const d = DIFFICULTIES[diff];
-      cols = d.cols; rows = d.rows; totalMines = d.mines;
-      grid = [];
-      gameOver = false;
-      isFirstClick = true;
-      revealedCount = 0;
-      flagCount = 0;
-      timer = 0;
-      clearInterval(timerInterval); timerInterval = null;
-
-      msgEl.className = '';
-      msgEl.textContent = '';
-      timerEl.textContent = '0';
-      mineCountEl.textContent = totalMines;
-
-      const baseSize = getBaseCellSize(cols, rows);
-
-      boardEl.style.gridTemplateColumns = `repeat(${cols}, ${baseSize}px)`;
-      boardEl.style.gridTemplateRows = `repeat(${rows}, ${baseSize}px)`;
-      boardEl.innerHTML = '';
-
-      for (let r = 0; r < rows; r++) {
-        grid[r] = [];
-        for (let c = 0; c < cols; c++) {
-          grid[r][c] = {
-            r, c, mine: false, revealed: false, flagged: false, questioned: false,
-            neighborMines: 0
-          };
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          cell.dataset.r = r;
-          cell.dataset.c = c;
-          cell.style.width = baseSize + 'px';
-          cell.style.height = baseSize + 'px';
-          const fontSize = Math.max(8, Math.min(14, baseSize * 0.45));
-          cell.style.fontSize = fontSize + 'px';
-
-          cell.addEventListener('click', (e) => handleClick(r, c, e));
-          cell.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            handleRightClick(r, c, e);
-          });
-          cell.addEventListener('touchstart', (e) => handleTouch(r, c, e), { passive: false });
-
-          boardEl.appendChild(cell);
-          grid[r][c].el = cell;
-        }
-      }
-
-      requestAnimationFrame(() => {
-        applyScale(currentScale);
-      });
-    }
-
-    // ==================== 布雷 ====================
-    function placeMines(safeR, safeC) {
-      const safeCells = new Set();
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          const nr = safeR + dr, nc = safeC + dc;
-          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
-            safeCells.add(nr * cols + nc);
+    // 生成一个不压在蛇身上的食物
+    function spawnFood() {
+      const free = [];
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (!snake.some(seg => seg.r === r && seg.c === c)) {
+            free.push({ r, c });
           }
         }
       }
-
-      let placed = 0;
-      while (placed < totalMines) {
-        const r = Math.floor(Math.random() * rows);
-        const c = Math.floor(Math.random() * cols);
-        if (!grid[r][c].mine && !safeCells.has(r * cols + c)) {
-          grid[r][c].mine = true;
-          placed++;
-        }
-      }
-
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (grid[r][c].mine) continue;
-          let count = 0;
-          forEachNeighbor(r, c, (nr, nc) => { if (grid[nr][nc].mine) count++; });
-          grid[r][c].neighborMines = count;
-        }
-      }
+      if (free.length === 0) return null; // 蛇填满棋盘，胜利
+      const cell = free[Math.floor(Math.random() * free.length)];
+      return { r: cell.r, c: cell.c };
     }
 
-    function forEachNeighbor(r, c, cb) {
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          if (dr === 0 && dc === 0) continue;
-          const nr = r + dr, nc = c + dc;
-          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
-            cb(nr, nc);
-          }
-        }
+    // ==================== 移动逻辑 ====================
+    function step() {
+      dir = nextDir;
+      const head = snake[0];
+      const nd = DIRS[dir];
+      const newHead = { r: head.r + nd.dr, c: head.c + nd.dc };
+
+      // 撞墙
+      if (newHead.r < 0 || newHead.r >= ROWS || newHead.c < 0 || newHead.c >= COLS) {
+        endGame();
+        return;
       }
-    }
-
-    // ==================== 交互事件 ====================
-    function handleClick(r, c, e) {
-      if (gameOver || grid[r][c].flagged || grid[r][c].questioned) return;
-
-      if (isFirstClick) {
-        isFirstClick = false;
-        placeMines(r, c);
-        startTimer();
-      }
-
-      const cell = grid[r][c];
-      if (cell.revealed) return;
-
-      if (cell.mine) {
-        cell.el.classList.add('mine');
-        cell.el.textContent = '💥';
-        revealAllMines();
-        endGame(false);
+      // 撞自己
+      if (snake.some(seg => seg.r === newHead.r && seg.c === newHead.c)) {
+        endGame();
         return;
       }
 
-      revealCell(r, c);
-      checkWin();
-    }
+      snake.unshift(newHead);
 
-    function handleRightClick(r, c, e) {
-      if (gameOver || grid[r][c].revealed) return;
-      const cell = grid[r][c];
-      if (!cell.flagged && !cell.questioned) {
-        cell.flagged = true;
-        cell.el.classList.add('flagged');
-        flagCount++;
-      } else if (cell.flagged) {
-        cell.flagged = false;
-        cell.el.classList.remove('flagged');
-        cell.questioned = true;
-        cell.el.classList.add('questioned');
-        flagCount--;
-      } else if (cell.questioned) {
-        cell.questioned = false;
-        cell.el.classList.remove('questioned');
-      }
-      mineCountEl.textContent = totalMines - flagCount;
-    }
-
-    function handleTouch(r, c, e) {
-      e.preventDefault();
-      let held;
-      const onUp = (ev) => {
-        ev.preventDefault();
-        ev.stopPropagation();
-        clearTimeout(held);
-        document.removeEventListener('touchend', onUp);
-        document.removeEventListener('touchmove', onUp);
-        handleClick(r, c, e);
-      };
-      document.addEventListener('touchend', onUp);
-      document.addEventListener('touchmove', onUp);
-      held = setTimeout(() => {
-        handleRightClick(r, c, e);
-        navigator.vibrate && navigator.vibrate(50);
-      }, 500);
-    }
-
-    // ==================== 揭开格子 ====================
-    function revealCell(r, c) {
-      const cell = grid[r][c];
-      if (cell.revealed || cell.flagged || cell.questioned || cell.mine) return;
-
-      cell.revealed = true;
-      const el = cell.el;
-      el.classList.add('revealed');
-      revealedCount++;
-
-      if (cell.neighborMines > 0) {
-        el.textContent = cell.neighborMines;
-        el.classList.add('num-' + cell.neighborMines);
-      } else {
-        forEachNeighbor(r, c, (nr, nc) => {
-          revealCell(nr, nc);
-        });
-      }
-    }
-
-    function revealAllMines() {
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const cell = grid[r][c];
-          if (cell.mine && !cell.flagged) {
-            cell.el.classList.add('mine');
-            cell.el.textContent = '💣';
-          } else if (!cell.mine && cell.flagged) {
-            cell.el.textContent = '❌';
-          }
+      // 吃食物
+      if (food && newHead.r === food.r && newHead.c === food.c) {
+        // 得分 = 基础分 × 当前速度等级（速度越快，每吃一个分越高）
+        score += BASE_SCORE * speedLevel;
+        eatenCount++;
+        // 每吃掉 EATEN_PER_LEVEL 个果子，速度等级 +1
+        if (eatenCount % EATEN_PER_LEVEL === 0) {
+          speedLevel = Math.min(20, speedLevel + 1);
         }
+        food = spawnFood();
+        updateUI();
+        if (!food) { endGame(true); return; }  // 填满棋盘胜利
+      } else {
+        snake.pop();
+      }
+
+      draw();
+    }
+
+    // ==================== 定时移动 ====================
+    function scheduleMove() {
+      clearInterval(moveTimer);
+      moveTimer = setInterval(() => {
+        if (!running || paused || gameOver) return;
+        step();
+      }, currentInterval());
+    }
+
+    // ==================== 绘制 ====================
+    function draw() {
+      ctx.clearRect(0, 0, COLS * BLOCK, ROWS * BLOCK);
+
+      // 网格（淡色）
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      ctx.lineWidth = 1;
+      for (let r = 1; r < ROWS; r++) {
+        ctx.beginPath();
+        ctx.moveTo(0, r * BLOCK);
+        ctx.lineTo(COLS * BLOCK, r * BLOCK);
+        ctx.stroke();
+      }
+      for (let c = 1; c < COLS; c++) {
+        ctx.beginPath();
+        ctx.moveTo(c * BLOCK, 0);
+        ctx.lineTo(c * BLOCK, ROWS * BLOCK);
+        ctx.stroke();
+      }
+
+      // 蛇身
+      snake.forEach((seg, i) => {
+        const x = seg.c * BLOCK, y = seg.r * BLOCK;
+        if (i === 0) {
+          // 蛇头
+          ctx.fillStyle = '#22c55e';
+          ctx.shadowColor = 'rgba(34,197,94,0.6)';
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.roundRect(x + 1, y + 1, BLOCK - 2, BLOCK - 2, 5);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          // 眼睛
+          ctx.fillStyle = '#052e16';
+          const eo = 5; // 眼睛偏移
+          if (dir === 'right' || dir === 'left') {
+            ctx.fillRect(x + BLOCK / 2 - 3, y + eo, 3, 3);
+            ctx.fillRect(x + BLOCK / 2 - 3, y + BLOCK - eo - 3, 3, 3);
+          }
+        } else {
+          // 蛇身（颜色由深到浅渐变）
+          const t = Math.min(1, i / (snake.length || 1));
+          const g = Math.round(120 + (160 - 120) * t);
+          ctx.fillStyle = `rgb(16, ${g}, 80)`;
+          ctx.beginPath();
+          ctx.roundRect(x + 1, y + 1, BLOCK - 2, BLOCK - 2, 4);
+          ctx.fill();
+        }
+      });
+
+      // 食物（普通圆点，无数字）
+      if (food) {
+        const x = food.c * BLOCK, y = food.r * BLOCK;
+        ctx.shadowColor = 'rgba(255,215,0,0.7)';
+        ctx.shadowBlur = 12;
+        ctx.fillStyle = '#ffd700';
+        ctx.beginPath();
+        ctx.arc(x + BLOCK / 2, y + BLOCK / 2, BLOCK * 0.32, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        // 高光小圆
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.beginPath();
+        ctx.arc(x + BLOCK / 2 - BLOCK * 0.1, y + BLOCK / 2 - BLOCK * 0.1, BLOCK * 0.1, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    function checkWin() {
-      const safeCells = rows * cols - totalMines;
-      if (revealedCount === safeCells) {
-        endGame(true);
+    // ==================== UI 更新 ====================
+    function updateUI() {
+      scoreEl.textContent = score;
+      speedEl.textContent = speedLevel;
+      if (score > highScore) {
+        highScore = score;
+        highEl.textContent = highScore;
+        localStorage.setItem('snake_high', String(highScore));
       }
+    }
+
+    // ==================== 游戏控制 ====================
+    function startGame() {
+      // 初始蛇：位于中央偏左，向右，长 4 节
+      const cy = Math.floor(ROWS / 2);
+      const cx = Math.floor(COLS / 2);
+      snake = [
+        { r: cy, c: cx },
+        { r: cy, c: cx - 1 },
+        { r: cy, c: cx - 2 },
+        { r: cy, c: cx - 3 }
+      ];
+      dir = 'right';
+      nextDir = 'right';
+      score = 0;
+      eatenCount = 0;
+      speedLevel = 1;
+      gameOver = false;
+      paused = false;
+      running = true;
+
+      food = spawnFood();
+
+      statusEl.className = '';
+      statusEl.textContent = '';
+      startBtn.textContent = '🔄 重新开始';
+
+      updateUI();
+      scheduleMove();
+      draw();
+    }
+
+    function togglePause() {
+      if (!running || gameOver) return;
+      paused = !paused;
+      pauseBtn.textContent = paused ? '▶ 继续' : '⏸ 暂停';
+      statusEl.className = paused ? 'status paused' : '';
+      statusEl.textContent = paused ? '⏸ 已暂停' : '';
+      draw();
     }
 
     function endGame(won) {
       gameOver = true;
-      clearInterval(timerInterval);
+      running = false;
+      clearInterval(moveTimer);
+      statusEl.className = 'status gameover';
       if (won) {
-        msgEl.textContent = `🎉 胜利！用时 ${timer} 秒`;
-        msgEl.className = 'message win';
+        statusEl.textContent = '🏆 满分通关！棋盘被填满啦！';
       } else {
-        msgEl.textContent = '💥 游戏结束！';
-        msgEl.className = 'message lose';
+        const isNewRecord = score === highScore && score > 0;
+        statusEl.textContent = '💀 游戏结束！分数 ' + score + (isNewRecord ? '（新纪录！）' : '');
       }
+      draw();
     }
 
-    function startTimer() {
-      if (timerInterval) return;
-      timerInterval = setInterval(() => {
-        timer++;
-        timerEl.textContent = timer;
-      }, 1000);
-    }
-
-    // ==================== 窗口resize ====================
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (gameOver || isFirstClick) {
-          init();
-        }
-      }, 300);
+    // ==================== 键盘控制 ====================
+    document.addEventListener('keydown', (e) => {
+      const key = e.key;
+      const map = {
+        'ArrowUp': 'up', 'w': 'up', 'W': 'up',
+        'ArrowDown': 'down', 's': 'down', 'S': 'down',
+        'ArrowLeft': 'left', 'a': 'left', 'A': 'left',
+        'ArrowRight': 'right', 'd': 'right', 'D': 'right'
+      };
+      if (map[key]) {
+        e.preventDefault();
+        if (!running || gameOver) return;
+        const nd = map[key];
+        // 禁止原地反向
+        if (OPPOSITE[nd] !== dir) nextDir = nd;
+      } else if (key === ' ' || key === 'p' || key === 'P') {
+        if (!running || gameOver) return;
+        e.preventDefault();
+        togglePause();
+      }
     });
 
-    // ==================== 缩放控制 ====================
-    scaleSlider.addEventListener('input', (e) => {
-      const val = parseFloat(e.target.value);
-      applyScale(val);
+    // ==================== 触控 ====================
+    document.querySelectorAll('.touch-controls button').forEach(btn => {
+      btn.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        if (!running || gameOver) return;
+        const act = btn.dataset.act;
+        if (OPPOSITE[act] !== dir) nextDir = act;
+      });
     });
 
-    // ==================== 切换难度、新游戏 ====================
-    diffSelect.addEventListener('change', () => {
-      diff = diffSelect.value;
-      scaleSlider.value = '1.0';
-      currentScale = 1.0;
-      init();
+    // ==================== 按钮 ====================
+    startBtn.addEventListener('click', () => {
+      startGame();
     });
-    newGameBtn.addEventListener('click', () => {
-      scaleSlider.value = '1.0';
-      currentScale = 1.0;
-      init();
-    });
+    pauseBtn.addEventListener('click', togglePause);
 
-    // ==================== 启动游戏 ====================
-    init();
+    // ==================== 初始化 ====================
+    setupCanvas();
+    draw();
+    updateUI();
   })();
 </script>
 </div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/xinxiaoyu1/images/main/Blog/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">XiaoYu</div><div class="author-info-description">咸鱼永不翻身！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinxiaoyu1"><i class="fab fa-github"></i><span>关注我喵！</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xinxiaoyu1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:924084608@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">目前没想出来什么骚话，先喵一个<br> 喵~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/Centos%207.9%202009%E5%8D%87%E7%BA%A7nginx%E6%9C%8D%E5%8A%A1/" title="Centos 7.9 2009升级nginx服务">Centos 7.9 2009升级nginx服务</a><time datetime="2026-09-01T16:00:00.000Z" title="发表于 2026-09-02 00:00:00">2026-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/28/%E9%83%A8%E7%BD%B2Silo%E5%B9%B6%E8%BF%81%E7%A7%BBminio%E6%95%B0%E6%8D%AE/" title="部署Silo并迁移minio数据">部署Silo并迁移minio数据</a><time datetime="2026-08-27T16:00:00.000Z" title="发表于 2026-08-28 00:00:00">2026-08-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/14/pgsql%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97_keepalived_repmgr/" title="pgsql集群搭建指南_keepalived_repmgr">pgsql集群搭建指南_keepalived_repmgr</a><time datetime="2026-07-13T16:00:00.000Z" title="发表于 2026-07-14 00:00:00">2026-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/%E9%BA%92%E9%BA%9Fv10%20PostgreSQL%20%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" title="麒麟v10 PostgreSQL 数据迁移">麒麟v10 PostgreSQL 数据迁移</a><time datetime="2026-03-30T16:00:00.000Z" title="发表于 2026-03-31 00:00:00">2026-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/04/Ubuntu1604%E5%8D%87%E7%BA%A7OpenSSH/" title="Ubuntu1604升级OpenSSH">Ubuntu1604升级OpenSSH</a><time datetime="2026-03-03T16:00:00.000Z" title="发表于 2026-03-04 00:00:00">2026-03-04</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div>
